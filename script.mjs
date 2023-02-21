@@ -4,7 +4,9 @@ $.verbose = false;
 
 try {
   await $`git rev-parse --git-dir`;
-  echo(chalk.greenBright("ou're in git repo"));
 } catch (error) {
-  echo(chalk.red("something is wrong!"));
+  if (error.stderr.includes("not a git repository")) {
+    throw chalk.red("You're not inside git repository 🥲");
+  }
+  throw chalk.red(error.stderr);
 }
