@@ -11,5 +11,6 @@ try {
   throw chalk.red(error.stderr);
 }
 
-const log = await $`git log --no-decorate --date=raw`;
-echo(chalk.blue(log));
+const { stdout: output } = await $`git log --no-decorate --date=raw`;
+const logs = output.split("commit").splice(1);
+console.log(logs[0]);
