@@ -10,3 +10,6 @@ try {
   }
   throw chalk.red(error.stderr);
 }
+
+const log = await $`git log --no-decorate --date=raw`;
+echo(chalk.blue(log));
