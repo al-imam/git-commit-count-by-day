@@ -2,4 +2,4 @@
 import "zx/globals";
 $.verbose = false;
 
-echo("Hello World!");
+echo(chalk.blue("Hello World"));
