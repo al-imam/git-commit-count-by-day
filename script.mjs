@@ -15,4 +15,12 @@ const { stdout: output } = await $`git log --no-decorate --date=raw`;
 const logs = output
   .split("commit")
   .splice(1)
-  .map((n) => n.toLowerCase());
+  .map((l) => l.toLowerCase())
+  .map((l) => {
+    return l
+      .split("\n")
+      .filter(Boolean)
+      .map((n) => n.trim());
+  });
+
+echo(chalk.blue(JSON.stringify(logs[0], null, 2)));
