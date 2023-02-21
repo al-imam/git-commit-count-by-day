@@ -12,5 +12,7 @@ try {
 }
 
 const { stdout: output } = await $`git log --no-decorate --date=raw`;
-const logs = output.split("commit").splice(1);
-console.log(logs[0]);
+const logs = output
+  .split("commit")
+  .splice(1)
+  .map((n) => n.toLowerCase());
