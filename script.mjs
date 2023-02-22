@@ -46,13 +46,21 @@ for (const key in logs) {
   formattedData.push({ time: key, count: logs[key].length });
 }
 
-echo("");
+echo(chalk.dim(`  Total ${formattedData.reduce((a, v) => a + v.count, 0)}`));
 
-const hex = chalk.hex("#69c0f1");
+const white = chalk.hex("#fff");
+const purple = chalk.hex("#d6acff");
+const green = chalk.hex("#69ff94");
+const red = chalk.hex("#ff6e6e");
+const yellow = chalk.hex("#f1fa8c");
 
 formattedData.forEach(({ time, count }, i) => {
   if (i > line) return;
-  echo(hex(`  ${time} - ${count}`));
+  echo(
+    white(
+      `  ${purple(time)} - ${
+        count > 20 ? green(count) : count > 15 ? yellow(count) : red(count)
+      }`
+    )
+  );
 });
-
-echo("");
