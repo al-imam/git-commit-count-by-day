@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "install": "npm i nx"
+    "install": "npm i -g nx",
+    "run-script": "zx script.mjs"
   },
   "name": "git-commit-count-by-day",
   "private": true,
