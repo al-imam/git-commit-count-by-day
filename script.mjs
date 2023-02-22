@@ -14,4 +14,9 @@ try {
 const { stdout: output } =
   await $`git log --format='%H | %aN | %aE | %as | %s'`;
 
-echo(JSON.stringify(output.split("\n"), null, 4));
+const logs = output
+  .split("\n")
+  .slice(0, -1)
+  .map((n) => n.split(" | "));
+
+echo(JSON.stringify(logs, null, 4));
