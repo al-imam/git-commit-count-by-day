@@ -17,6 +17,15 @@ const { stdout: output } =
 const logs = output
   .split("\n")
   .slice(0, -1)
-  .map((n) => n.split(" | "));
-
-echo(JSON.stringify(logs, null, 4));
+  .map((n) => {
+    const [hash, name, email, time, message] = n.split(" | ");
+    return {
+      hash,
+      author: {
+        name,
+        email,
+      },
+      time,
+      message,
+    };
+  });
