@@ -28,4 +28,12 @@ const logs = output
       time,
       message,
     };
-  });
+  })
+  .reduce((accumulator, currentValue) => {
+    if (accumulator[currentValue.time]) {
+      accumulator[currentValue.time].push(currentValue);
+      return accumulator;
+    }
+    accumulator[currentValue.time] = [currentValue];
+    return accumulator;
+  }, {});
