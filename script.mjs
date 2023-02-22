@@ -34,6 +34,14 @@ const logs = output
     };
     logArray.message = log[3];
     return logArray;
-  });
+  })
+  .reduce((a, v) => {
+    if (a[v.date.toLocaleDateString()]) {
+      a[v.date.toLocaleDateString()].push(v);
+      return a;
+    }
+    a[v.date.toLocaleDateString()] = [v];
+    return a;
+  }, {});
 
-echo(chalk.green(JSON.stringify(logs, null, 2)));
+echo(chalk.green(JSON.stringify(Object.entries(logs), null, 2)));
