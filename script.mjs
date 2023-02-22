@@ -37,3 +37,9 @@ const logs = output
     accumulator[currentValue.time] = [currentValue];
     return accumulator;
   }, {});
+
+const formattedData = new Set();
+
+for (const key in logs) {
+  formattedData.add({ time: key, count: logs[key].length });
+}
