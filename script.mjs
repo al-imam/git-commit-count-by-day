@@ -44,4 +44,9 @@ const logs = output
     return a;
   }, {});
 
-echo(chalk.green(JSON.stringify(Object.entries(logs), null, 2)));
+const logCountByDay = [];
+
+Object.entries(logs).forEach((log) => {
+  logCountByDay.push([log[0], log[1].length]);
+  echo(chalk.cyan([log[0], log[1].length]));
+});
