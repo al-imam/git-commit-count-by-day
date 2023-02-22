@@ -11,6 +11,8 @@ try {
   throw chalk.red(error.stderr);
 }
 
+const line = 5;
+
 const { stdout: output } =
   await $`git log --format='%H | %aN | %aE | %as | %s'`;
 
@@ -38,8 +40,19 @@ const logs = output
     return accumulator;
   }, {});
 
-const formattedData = new Set();
+const formattedData = [];
 
 for (const key in logs) {
-  formattedData.add({ time: key, count: logs[key].length });
+  formattedData.push({ time: key, count: logs[key].length });
 }
+
+echo("");
+
+const hex = chalk.hex("#69c0f1");
+
+formattedData.forEach(({ time, count }, i) => {
+  if (i > line) return;
+  echo(hex(`  ${time} - ${count}`));
+});
+
+echo("");
