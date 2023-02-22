@@ -11,7 +11,7 @@ try {
   throw chalk.red(error.stderr);
 }
 
-const line = 5;
+const line = isNaN(process.argv[3] || "foo") ? 5 : parseInt(process.argv[3]);
 
 const { stdout: output } =
   await $`git log --format='%H | %aN | %aE | %as | %s'`;
