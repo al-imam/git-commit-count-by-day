@@ -11,8 +11,23 @@ try {
   throw chalk.red(error.stderr);
 }
 
-const line =
-  (isNaN(process.argv[3] || "foo") ? 5 : parseInt(process.argv[3])) - 1;
+const argument = ({
+  line = 5,
+  goodColor = "#69ff94",
+  normalColor = "#f1fa8c",
+  badColor = "#ff6e6e",
+  dateColor = "#d6acff",
+  dashColor = "#fff",
+} = {}) => ({
+  line: line - 1,
+  goodColor,
+  normalColor,
+  badColor,
+  dateColor,
+  dashColor,
+});
+
+const options = argument(argv);
 
 const { stdout: output } =
   await $`git log --format='%H | %aN | %aE | %as | %s'`;
@@ -56,7 +71,7 @@ const red = chalk.hex("#ff6e6e");
 const yellow = chalk.hex("#f1fa8c");
 
 formattedData.forEach(({ time, count }, i) => {
-  if (i > line) return;
+  if (i > options.line) return;
   echo(
     white(
       `  ${purple(time)} - ${
