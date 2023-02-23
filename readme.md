@@ -27,10 +27,8 @@
   $ ./script.mjs
 ```
 
-### Demo output
-
 ```sh
-  $ zx script.mjs
+  $ zx script.mjs --line=5
     Total 861
     2023-02-21 - 26
     2023-02-20 - 23
