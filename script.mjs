@@ -70,8 +70,8 @@ const green = chalk.hex("#69ff94");
 const red = chalk.hex("#ff6e6e");
 const yellow = chalk.hex("#f1fa8c");
 
-formattedData.forEach(({ time, count }, i) => {
-  if (i > options.line) return;
+for (const [i, { time, count }] of formattedData.entries()) {
+  if (i > options.line) break;
   echo(
     white(
       `  ${purple(time)} - ${
@@ -79,4 +79,4 @@ formattedData.forEach(({ time, count }, i) => {
       }`
     )
   );
-});
+}
