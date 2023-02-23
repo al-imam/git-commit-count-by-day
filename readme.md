@@ -7,20 +7,6 @@
   $ npm i -g zx
 ```
 
-<br />
-
-## Optional flags
-
-| option        | value     | default |
-| ------------- | --------- | ------- |
-| --line        | number    | 5       |
-| --goodColor   | Hex color | #69FF94 |
-| --badColor    | Hex color | #FF6E6E |
-| --normalColor | Hex color | #F1FA8C |
-| --dateColor   | Hex color | #D6ACFF |
-| --dashColor   | Hex color | #FFFFFF |
-| --errorColor  | Hex color | #FF5555 |
-
 <br>
 
 ### After installing dependence make script executable
@@ -41,8 +27,6 @@
   $ ./script.mjs
 ```
 
-<br>
-
 ### Demo output
 
 ```sh
@@ -56,5 +40,19 @@
 ```
 
 <br>
+
+## Optional flags
+
+| option        | value     | default |
+| ------------- | --------- | ------- |
+| --line        | number    | 5       |
+| --goodColor   | Hex color | #69FF94 |
+| --badColor    | Hex color | #FF6E6E |
+| --normalColor | Hex color | #F1FA8C |
+| --dateColor   | Hex color | #D6ACFF |
+| --dashColor   | Hex color | #FFFFFF |
+| --errorColor  | Hex color | #FF5555 |
+
+<br />
 
 <p align="center">Thanks</p>
