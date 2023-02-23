@@ -2,15 +2,6 @@
 import "zx/globals";
 $.verbose = false;
 
-try {
-  await $`git rev-parse --git-dir`;
-} catch (error) {
-  if (error.stderr.includes("not a git repository")) {
-    throw chalk.red("You're not inside git repository 🥲");
-  }
-  throw chalk.red(error.stderr);
-}
-
 const argument = ({
   line = 5,
   goodColor = "#69ff94",
@@ -18,6 +9,7 @@ const argument = ({
   badColor = "#ff6e6e",
   dateColor = "#d6acff",
   dashColor = "#fff",
+  errorColor = "#ff5555",
 } = {}) => ({
   line: line - 1,
   goodColor,
@@ -25,9 +17,26 @@ const argument = ({
   badColor,
   dateColor,
   dashColor,
+  errorColor,
 });
 
 const options = argument(argv);
+
+const redBright = chalk.hex(options.errorColor);
+const white = chalk.hex(options.dashColor);
+const purple = chalk.hex(options.dateColor);
+const green = chalk.hex(options.goodColor);
+const red = chalk.hex(options.badColor);
+const yellow = chalk.hex(options.normalColor);
+
+try {
+  await $`git rev-parse --git-dir`;
+} catch (error) {
+  if (error.stderr.includes("not a git repository")) {
+    throw redBright("You're not inside git repository 🥲");
+  }
+  throw redBright(error.stderr);
+}
 
 const { stdout: output } =
   await $`git log --format='%H | %aN | %aE | %as | %s'`;
@@ -63,12 +72,6 @@ for (const key in logs) {
 }
 
 echo(chalk.dim(`  Total ${formattedData.reduce((a, v) => a + v.count, 0)}`));
-
-const white = chalk.hex(options.dashColor);
-const purple = chalk.hex(options.dateColor);
-const green = chalk.hex(options.goodColor);
-const red = chalk.hex(options.badColor);
-const yellow = chalk.hex(options.normalColor);
 
 for (const [i, { time, count }] of formattedData.entries()) {
   if (i > options.line) break;
