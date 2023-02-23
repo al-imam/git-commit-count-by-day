@@ -1,4 +1,4 @@
-## Install dependence
+### install dependence
 
 ```sh
   // install zx globally use one of them
@@ -9,7 +9,7 @@
 
 <br>
 
-### After installing dependence make script executable
+### after installing dependence make script executable
 
 ```sh
   $ chmod +x ./script.mjs
@@ -17,7 +17,7 @@
 
 <br>
 
-### Run script boom!
+### run script boom!
 
 ```sh
     without executable permission
@@ -39,7 +39,7 @@
 
 <br>
 
-## Optional flags
+### arguments optional\*
 
 | option        | value     | default |
 | ------------- | --------- | ------- |
