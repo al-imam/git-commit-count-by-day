@@ -64,11 +64,11 @@ for (const key in logs) {
 
 echo(chalk.dim(`  Total ${formattedData.reduce((a, v) => a + v.count, 0)}`));
 
-const white = chalk.hex("#fff");
-const purple = chalk.hex("#d6acff");
-const green = chalk.hex("#69ff94");
-const red = chalk.hex("#ff6e6e");
-const yellow = chalk.hex("#f1fa8c");
+const white = chalk.hex(options.dashColor);
+const purple = chalk.hex(options.dateColor);
+const green = chalk.hex(options.goodColor);
+const red = chalk.hex(options.badColor);
+const yellow = chalk.hex(options.normalColor);
 
 for (const [i, { time, count }] of formattedData.entries()) {
   if (i > options.line) break;
