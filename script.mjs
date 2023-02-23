@@ -48,10 +48,8 @@ const logs = output
     const [hash, name, email, time, message] = n.split(" | ");
     return {
       hash,
-      author: {
-        name,
-        email,
-      },
+      name,
+      email,
       time,
       message,
     };
