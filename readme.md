@@ -1,34 +1,28 @@
 ### install dependence
 
 ```sh
-  // install zx globally use one of them
-  $ yarn install
-  $ npm run install
+  # install zx globally
   $ npm i -g zx
+  # or install locally
+  $ npm i
 ```
 
 <br>
-
-### after installing dependence make script executable
-
-```sh
-  $ chmod +x ./script.mjs
-```
 
 <br>
 
 ### run script boom!
 
 ```sh
-    without executable permission
-  $ zx script.mjs
+  #  without executable permission
+  $ zx index.mjs
 
-    with executable permission
-  $ ./script.mjs
+  # with executable permission
+  $ ./index.mjs
 ```
 
 ```sh
-  $ zx script.mjs --line=5
+  $ zx index.mjs --line=5
     Total 861
     2023-02-21 - 26
     2023-02-20 - 23
