@@ -1,12 +1,11 @@
 {
-  "scripts": {
-    "install": "npm i -g nx",
-    "run-script": "zx script.mjs"
-  },
   "name": "git-commit-count-by-day",
   "private": true,
   "main": "index.mjs",
   "author": "al-imam",
+  "scripts": {
+    "run-script": "zx index.mjs"
+  },
   "dependencies": {
     "zx": "^7.2.0"
   }
