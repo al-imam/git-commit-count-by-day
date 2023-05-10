@@ -3,6 +3,7 @@ import "zx/globals";
 import getConfig from "./utility/getConfig.mjs";
 import colorize from "./utility/colorize.mjs";
 import gitOutput from "./utility/gitOutput.mjs";
+import formatGitOutput from "./utility/formatGitOutput.mjs";
 
 $.verbose = false;
 
@@ -19,33 +20,7 @@ try {
 
 const output = await gitOutput();
 
-const logs = output
-  .split("\n")
-  .slice(0, -1)
-  .map((n) => {
-    const [hash, name, email, time, message] = n.split(" | ");
-    return {
-      hash,
-      name,
-      email,
-      time,
-      message,
-    };
-  })
-  .reduce((accumulator, currentValue) => {
-    if (accumulator[currentValue.time]) {
-      accumulator[currentValue.time].push(currentValue);
-      return accumulator;
-    }
-    accumulator[currentValue.time] = [currentValue];
-    return accumulator;
-  }, {});
-
-const formattedData = [];
-
-for (const key in logs) {
-  formattedData.push({ time: key, count: logs[key].length });
-}
+const formattedData = formatGitOutput(output);
 
 const totalCommits = formattedData.reduce((a, v) => a + v.count, 0);
 
