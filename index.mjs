@@ -76,7 +76,7 @@ for (const [i, { time, count }] of formattedData.entries()) {
   echo(
     white(
       `  ${purple(time)} - ${
-        count > 20 ? green(count) : count > 15 ? yellow(count) : red(count)
+        count >= 15 ? green(count) : count >= 10 ? yellow(count) : red(count)
       }`
     )
   );
