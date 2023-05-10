@@ -4,6 +4,7 @@ import getConfig from "./utility/getConfig.mjs";
 import gitOutput from "./utility/gitOutput.mjs";
 import formatGitOutput from "./utility/formatGitOutput.mjs";
 import showCount from "./utility/showCount.mjs";
+import showAverage from "./utility/showAverage.mjs";
 
 $.verbose = false;
 
@@ -28,4 +29,4 @@ echo(chalk.dim(`  Total ${total}`));
 
 showCount(logArray);
 
-echo(chalk.dim(`  Average ${total / logArray.length}`));
+showAverage(total, logArray.length);
