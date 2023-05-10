@@ -4,22 +4,15 @@ import getConfig from "./utility/getConfig.mjs";
 
 $.verbose = false;
 
-const options = getConfig(argv);
-
-const redBright = chalk.hex(options.errorColor);
-const white = chalk.hex(options.dashColor);
-const purple = chalk.hex(options.dateColor);
-const green = chalk.hex(options.goodColor);
-const red = chalk.hex(options.badColor);
-const yellow = chalk.hex(options.normalColor);
+const { line, dash, date, wrong, excellent, good, normal } = getConfig(argv);
 
 try {
   await $`git rev-parse --git-dir`;
 } catch (error) {
   if (error.stderr.includes("not a git repository")) {
-    throw redBright("You're not inside git repository 🥲");
+    throw wrong("You're not inside git repository 🥲");
   }
-  throw redBright(error.stderr);
+  throw wrong(error.stderr);
 }
 
 const { stdout: output } =
@@ -58,12 +51,16 @@ const totalCommits = formattedData.reduce((a, v) => a + v.count, 0);
 echo(chalk.dim(`  Total ${totalCommits}`));
 
 function colorize(count) {
-  return count >= 15 ? green(count) : count >= 10 ? yellow(count) : red(count);
+  return count >= 15
+    ? excellent(count)
+    : count >= 10
+    ? good(count)
+    : normal(count);
 }
 
 for (const [i, { time, count }] of formattedData.entries()) {
-  if (i > options.line) break;
-  echo(white(`  ${purple(time)} - ${colorize(count)}`));
+  if (i > line) break;
+  echo(dash(`  ${date(time)} - ${colorize(count)}`));
 }
 
 echo(chalk.dim(`  Average ${totalCommits / formattedData.length}`));

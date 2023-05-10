@@ -13,5 +13,5 @@ export default ({
   excellent: chalk.hex(excellent),
   date: chalk.hex(date),
   dash: chalk.hex(dash),
-  error: chalk.hex(error),
+  wrong: chalk.hex(error),
 });
