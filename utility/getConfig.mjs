@@ -1,4 +1,4 @@
-export default ({
+const getConfig = ({
   line = 5,
   good = "#69ff94",
   normal = "#f1fa8c",
@@ -15,3 +15,7 @@ export default ({
   dash: chalk.hex(dash),
   wrong: chalk.hex(error),
 });
+
+const config = getConfig(argv);
+
+export default () => config;
