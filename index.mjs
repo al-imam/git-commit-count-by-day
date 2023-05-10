@@ -69,7 +69,9 @@ for (const key in logs) {
   formattedData.push({ time: key, count: logs[key].length });
 }
 
-echo(chalk.dim(`  Total ${formattedData.reduce((a, v) => a + v.count, 0)}`));
+const totalCommits = formattedData.reduce((a, v) => a + v.count, 0);
+
+echo(chalk.dim(`  Total ${totalCommits}`));
 
 function colorize(count) {
   return count >= 15 ? green(count) : count >= 10 ? yellow(count) : red(count);
@@ -79,3 +81,5 @@ for (const [i, { time, count }] of formattedData.entries()) {
   if (i > options.line) break;
   echo(white(`  ${purple(time)} - ${colorize(count)}`));
 }
+
+echo(chalk.dim(`  Average ${totalCommits / formattedData.length}`));
