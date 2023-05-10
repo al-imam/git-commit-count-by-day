@@ -1,8 +1,8 @@
 const getConfig = ({
   line = 5,
-  good = "#69ff94",
-  normal = "#f1fa8c",
-  excellent = "#ff6e6e",
+  excellent = "#69ff94",
+  good = "#f1fa8c",
+  normal = "#ff6e6e",
   date = "#d6acff",
   dash = "#fff",
   error = "#ff5555",

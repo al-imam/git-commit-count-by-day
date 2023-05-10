@@ -1,13 +1,13 @@
 #!/usr/bin/env zx
 import "zx/globals";
 import getConfig from "./utility/getConfig.mjs";
-import colorize from "./utility/colorize.mjs";
 import gitOutput from "./utility/gitOutput.mjs";
 import formatGitOutput from "./utility/formatGitOutput.mjs";
+import showCount from "./utility/showCount.mjs";
 
 $.verbose = false;
 
-const { line, dash, date, wrong } = getConfig();
+const { wrong } = getConfig();
 
 try {
   await $`git rev-parse --git-dir`;
@@ -20,15 +20,12 @@ try {
 
 const output = await gitOutput();
 
-const formattedData = formatGitOutput(output);
+const logArray = formatGitOutput(output);
 
-const totalCommits = formattedData.reduce((a, v) => a + v.count, 0);
+const total = logArray.reduce((a, v) => a + v.count, 0);
 
-echo(chalk.dim(`  Total ${totalCommits}`));
+echo(chalk.dim(`  Total ${total}`));
 
-for (const [i, { time, count }] of formattedData.entries()) {
-  if (i > line) break;
-  echo(dash(`  ${date(time)} - ${colorize(count)}`));
-}
+showCount(logArray);
 
-echo(chalk.dim(`  Average ${totalCommits / formattedData.length}`));
+echo(chalk.dim(`  Average ${total / logArray.length}`));
