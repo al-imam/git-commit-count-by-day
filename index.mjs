@@ -1,22 +1,23 @@
 #!/usr/bin/env zx
 import "zx/globals";
 import getConfig from "./utility/getConfig.mjs";
+import colorize from "./utility/colorize.mjs";
+import gitOutput from "./utility/gitOutput.mjs";
 
 $.verbose = false;
 
-const { line, dash, date, wrong, excellent, good, normal } = getConfig(argv);
+const { line, dash, date, wrong } = getConfig();
 
 try {
   await $`git rev-parse --git-dir`;
 } catch (error) {
   if (error.stderr.includes("not a git repository")) {
-    throw wrong("You're not inside git repository 🥲");
+    throw wrong("You're not inside git repository 😑");
   }
   throw wrong(error.stderr);
 }
 
-const { stdout: output } =
-  await $`git log --format='%H | %aN | %aE | %as | %s'`;
+const output = await gitOutput();
 
 const logs = output
   .split("\n")
@@ -49,14 +50,6 @@ for (const key in logs) {
 const totalCommits = formattedData.reduce((a, v) => a + v.count, 0);
 
 echo(chalk.dim(`  Total ${totalCommits}`));
-
-function colorize(count) {
-  return count >= 15
-    ? excellent(count)
-    : count >= 10
-    ? good(count)
-    : normal(count);
-}
 
 for (const [i, { time, count }] of formattedData.entries()) {
   if (i > line) break;
