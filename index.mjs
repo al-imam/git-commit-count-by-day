@@ -71,13 +71,11 @@ for (const key in logs) {
 
 echo(chalk.dim(`  Total ${formattedData.reduce((a, v) => a + v.count, 0)}`));
 
+function colorize(count) {
+  return count >= 15 ? green(count) : count >= 10 ? yellow(count) : red(count);
+}
+
 for (const [i, { time, count }] of formattedData.entries()) {
   if (i > options.line) break;
-  echo(
-    white(
-      `  ${purple(time)} - ${
-        count >= 15 ? green(count) : count >= 10 ? yellow(count) : red(count)
-      }`
-    )
-  );
+  echo(white(`  ${purple(time)} - ${colorize(count)}`));
 }
