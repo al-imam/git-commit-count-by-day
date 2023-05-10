@@ -1,5 +1,5 @@
 const getConfig = ({
-  line = 5,
+  line = 4,
   excellent = "#69ff94",
   good = "#f1fa8c",
   normal = "#ff6e6e",
@@ -7,7 +7,7 @@ const getConfig = ({
   dash = "#fff",
   error = "#ff5555",
 }) => ({
-  line: line - 1,
+  line: parse(line),
   good: chalk.hex(good),
   normal: chalk.hex(normal),
   excellent: chalk.hex(excellent),
@@ -15,6 +15,14 @@ const getConfig = ({
   dash: chalk.hex(dash),
   wrong: chalk.hex(error),
 });
+
+function parse(s) {
+  try {
+    return parseInt(s) - 1;
+  } catch {
+    return 4;
+  }
+}
 
 const config = getConfig(argv);
 
