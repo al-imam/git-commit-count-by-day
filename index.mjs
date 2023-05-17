@@ -1,4 +1,5 @@
 #!/usr/bin/env zx
+
 import "zx/globals";
 import getConfig from "./utility/getConfig.mjs";
 import gitOutput from "./utility/gitOutput.mjs";
