@@ -1,4 +1,6 @@
-const getConfig = ({
+$.verbose = false;
+
+const getConfig = async ({
   line = 4,
   excellent = "#69ff94",
   good = "#f1fa8c",
@@ -14,6 +16,8 @@ const getConfig = ({
   date: chalk.hex(date),
   dash: chalk.hex(dash),
   wrong: chalk.hex(error),
+  name: (await $` git config user.name`).stdout.trim(),
+  email: (await $` git config user.email`).stdout.trim(),
 });
 
 function parse(s) {
@@ -24,6 +28,6 @@ function parse(s) {
   }
 }
 
-const config = getConfig(argv);
+const config = await getConfig(argv);
 
 export default () => config;
