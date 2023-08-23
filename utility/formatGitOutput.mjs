@@ -1,3 +1,7 @@
+import getConfig from "./getConfig.mjs";
+
+const { email, name } = getConfig();
+
 function formatGitOutput(output) {
   const logs = output
     .split("\n")
@@ -22,7 +26,11 @@ function convertToArray(logs) {
   const formattedData = [];
 
   for (const key in logs) {
-    formattedData.push({ time: key, count: logs[key].length });
+    formattedData.push({
+      time: key,
+      count: logs[key].filter((log) => log.name === name && log.email === email)
+        .length,
+    });
   }
 
   return formattedData;
